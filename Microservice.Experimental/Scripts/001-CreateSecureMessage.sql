@@ -1,0 +1,26 @@
+﻿create table [dbo].[SecureMessage]
+(
+    [Id] [int] IDENTITY(1,1) NOT FOR REPLICATION NOT NULL primary key clustered,
+    [TenantId] [int] NULL,
+    [Subject] [nvarchar](255) NULL,
+    [Body] [nvarchar](max) NULL,
+    [BodyPreview] [nvarchar](200) NULL,
+    [Status] [nvarchar](50) NOT NULL,
+    [SentTimeStamp] [datetime] NULL,
+    [ReceivedTimeStamp] [datetime] NULL,
+    [ReplySecureMessageId] [int] NULL foreign key references [dbo].[SecureMessage]([Id]),
+    [IsHtml] [bit] NOT NULL default(1),
+    [IsRead] [bit] NOT NULL default(0),
+    [IsReplied] [bit] NOT NULL default(0),
+    [IsReadReceiptRequested] [bit] NOT NULL default(0),
+    [ReadOnTimeStamp] [datetime] NULL,
+    [SenderName] [nvarchar](500) NULL,
+    [SenderPartyId] [int] NULL,
+    [SentMessageId] [int] NULL  foreign key references [dbo].[SecureMessage]([Id]),
+    [ReceivedMessageId] [int] NULL foreign key references [dbo].[SecureMessage]([Id]),
+    [EmailNotificationTemplate] [nvarchar](50) NULL,
+    [UpdatedDraftTimeStamp] [datetime] NULL,
+    [ConversationId] [uniqueidentifier] NULL,
+    [IsRevoked] [bit] NOT NULL default (0),
+    [BulkMessageId] [int] NULL
+);

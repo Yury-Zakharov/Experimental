@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>false</InvariantGlobalization>
+    <UserSecretsId>6e65c590-5337-4ed6-9cc6-0faa1e2847fc</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <NeutralLanguage>en-GB</NeutralLanguage>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Scripts\001-CreateSecureMessage.sql" />
+    <None Remove="Scripts\002-CreateSecureMessageRecipient.sql" />
+    <None Remove="Scripts\003-CreateSecureMessageAttachment.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Scripts\001-CreateSecureMessage.sql" />
+    <EmbeddedResource Include="Scripts\002-CreateSecureMessageRecipient.sql" />
+    <EmbeddedResource Include="Scripts\003-CreateSecureMessageAttachment.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.28" />
+    <PackageReference Include="dbup-sqlserver" Version="5.0.40" />
+    <PackageReference Include="IntelliFlo.Platform.NetCore" Version="19.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.19.6" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microservice.Experimental.Contracts\Microservice.Experimental.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>
